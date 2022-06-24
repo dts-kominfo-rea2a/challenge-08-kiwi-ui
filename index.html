@@ -9,33 +9,47 @@
   <body>
     <div id="app">
       <!-- TODO: Buatlah sebuah header dengan id todo-title -->
+      <header id="todo-title">To Do List</header>
       <!-- TODO: Buatlah sebuah subtitle dengan id todo-subtitle -->
-
+      <subtitle id="todo-subtitle">- Today I Need To Do -</subtitle>
       <!-- Section: input -->
       <!-- TODO: Buatlah sebuah input bertipe text dengan id todo-input -->
+      <input type="text" id="todo-input" />
       <!-- TODO: Buatlah sebuah button dengan id todo-submit -->
-
+      <button id="todo-submit">Submit</button>
       <!-- Section output -->
       <!-- TODO: Buatlah sebuah <ul> dengan id todo-output -->
+      <ul id="todo-output"></ul>
     </div>
 
     <!-- ! Untuk tantangan ini, script jangan diubah ke external js yah ! -->
     <script>
       // TODO: Deklarasi variable sesuai dengan kebutuhan di sini
-      let button;
-      let input;
-      let output;
-
+      let button = document.getElementById("todo-submit");
+      let input = document.getElementById("todo-input");
+      let output = document.getElementById("todo-output");
+      let unordereList = document.getElementById("todo-output");
       // TODO: Buatlah sebuah fungsi dengan nama fnClickHandler
       // Fungsi yang digunakan untuk menambahkan tulisan
       // Jangan ubah cara deklarasi fungsinya, cukup isi saja
-      function fnClickHandler(toDoItem) {}
-
+      function fnClickHandler(toDoItem) {
+        let itemBaru = document.createElement("li");
+        let nilaiInput = document.createTextNode(input.value);
+        let hasil = itemBaru.appendChild(nilaiInput);
+        unordereList.appendChild(itemBaru);
+        input.value = "";
+      }
       // TODO: register event onclick / addEventListener untuk button
       // akan menjalankan fungsi fnClickHandler
-      
+      button.addEventListener("click", fnClickHandler);
       // TODO: register event onkeypress / addEventListener untuk input
       // sehingga saat di input ditekan enter akan menjalankan fungsi fnClickHandler juga
+      function keypressFn(event) {
+        if (event.key === "Enter") {
+          fnClickHandler();
+        }
+      }
+      input.addEventListener("keypress", keypressFn);
     </script>
   </body>
 </html>
